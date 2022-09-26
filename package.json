@@ -1,0 +1,26 @@
+{
+  "name": "myflix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Siavash-Ebrahimi/myFlix.git"
+  },
+  "author": "Siavash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Siavash-Ebrahimi/myFlix/issues"
+  },
+  "homepage": "https://github.com/Siavash-Ebrahimi/myFlix#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0"
+  }
+}
