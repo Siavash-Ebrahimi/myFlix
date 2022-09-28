@@ -1,31 +1,89 @@
-
-1- URL: /documentation
-Timestamp: Sat Sep 24 2022 20:40:08 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
-2- URL: /img/fav.png
-Timestamp: Sat Sep 24 2022 20:40:08 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
-3- URL: /
-Timestamp: Sat Sep 24 2022 20:40:16 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
-4- URL: /img/fav.png
-Timestamp: Sat Sep 24 2022 20:40:16 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
-5- URL: /documentation
-Timestamp: Sat Sep 24 2022 20:40:22 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
-6- URL: /img/fav.png
-Timestamp: Sat Sep 24 2022 20:40:24 GMT+0400 (Gulf Standard Time)
-
-------------------------------------------
-
+::1 - - [28/Sep/2022:06:37:45 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:06:40:17 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:07:59:56 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:00:02 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:00:10 +0000] "GET /index HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:00:24 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:00:35 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:01:55 +0000] "GET /documentation.html HTTP/1.1" 404 157 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:33 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:37 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:37 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:03:45 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:04:03 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:08:25 +0000] "GET / HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:08:25 +0000] "GET /img/fav.png HTTP/1.1" 404 150 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:08:37 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:08:47 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:09:34 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:09:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:09:42 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:10:10 +0000] "GET /index HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:11:13 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:04 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:05 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:09 +0000] "GET /books HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:13 +0000] "GET /index HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:17 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:54 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:55 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:55 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:13:57 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:03 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:09 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:16 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:21 +0000] "GET /books HTTP/1.1" 200 178 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:28 +0000] "GET /index HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:08:48:31 +0000] "GET /index.html HTTP/1.1" 404 149 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:01:38 +0000] "GET /index.html HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:01:49 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:01:56 +0000] "GET /documentation.html HTTP/1.1" 200 1227 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:02:26 +0000] "GET / HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:03:46 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:07:09 +0000] "GET /documentation.html HTTP/1.1" 404 157 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:07:10 +0000] "GET /documentation.html HTTP/1.1" 404 157 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:07:23 +0000] "GET /staticFiles/documentation.html HTTP/1.1" 200 1227 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:07:23 +0000] "GET /staticFiles/img/fav.png HTTP/1.1" 404 162 "http://localhost:8080/staticFiles/documentation.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:08:17 +0000] "GET /staticFiles/index.html HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:08:28 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:08:51 +0000] "GET /staticFiles/index.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:18:15 +0000] "GET /appStaticFiles/index.html HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:18:15 +0000] "GET /appStaticFiles/img/fav.png HTTP/1.1" 404 165 "http://localhost:8080/appStaticFiles/index.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:18:25 +0000] "GET /appStaticFiles/documentation.html HTTP/1.1" 200 1227 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:09:23:27 +0000] "GET /appStaticFiles/ HTTP/1.1" 200 770 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:16:50 +0000] "GET /appStaticF HTTP/1.1" 404 149 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:16:55 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:17:06 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:37:57 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:38:01 +0000] "GET /book HTTP/1.1" 404 143 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:38:12 +0000] "GET /books HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:40:56 +0000] "GET /appStaticFiles/documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:41:02 +0000] "GET /appStaticFiles/documentation.htm HTTP/1.1" 404 171 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:10:41:14 +0000] "GET /appStaticFiles/documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:11:28:26 +0000] "GET /MOVIES HTTP/1.1" 200 1799 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:11:48:52 +0000] "GET /MOVIES HTTP/1.1" 200 2101 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:11:50:08 +0000] "GET / HTTP/1.1" 200 80 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:11:50:15 +0000] "GET /MOVIES HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:18:43 +0000] "GET /MOVIES HTTP/1.1" 200 3432 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:25:47 +0000] "GET /MOVIES HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:25:52 +0000] "GET /MOVIES HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:26:01 +0000] "GET /documentation.html HTTP/1.1" 200 1227 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:26:06 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:26:08 +0000] "GET / HTTP/1.1" 200 38 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:27:37 +0000] "GET / HTTP/1.1" 200 47 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:28:15 +0000] "GET / HTTP/1.1" 200 45 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:29:17 +0000] "GET / HTTP/1.1" 500 1184 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:30:47 +0000] "GET / HTTP/1.1" 200 182 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:31:47 +0000] "GET / HTTP/1.1" 200 20 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:32:40 +0000] "GET / HTTP/1.1" 200 187 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:34:11 +0000] "GET / HTTP/1.1" 200 199 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:34:54 +0000] "GET / HTTP/1.1" 200 191 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:35:53 +0000] "GET / HTTP/1.1" 200 196 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:36:59 +0000] "GET / HTTP/1.1" 200 191 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:37:06 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:37:08 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+::1 - - [28/Sep/2022:12:37:24 +0000] "GET /MOVIES HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
