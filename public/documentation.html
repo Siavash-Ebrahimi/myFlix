@@ -8,10 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Chose Web Page Title Name Shown on Browsers -->
-    <title>Documentation</title>
+    <title>API Documentation</title>
 
     <!-- Chose Web Page FAV Icon (small icon) Shown on Browsers -->
     <link rel="icon" type="image/png" href="img/fav.png">
+
+    <!-- Important Link to Connect CSS Codes to HTML Pages -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
   </head>
   <body>
     <h1>myFlix API</h1>
@@ -20,6 +24,181 @@
     <p>myFlix platform provides an API that enables you to fetch data related to its movie information.</p>
     <p>This page describes what’s possible to build with the API that are available on the platform, and how to get the access and information that you need to get started.</p>
     <p>We regularly update and improve the experience available on the myFlix platform. These improvements make it important for you to stay informed so you don’t miss any updates.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Request</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
+          <th>Request body data format</th>
+          <th>Response body data format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tI">
+          <td>Return a list of ALL movies to the user</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td><P>A JSON object holding data<br>about all the movies</P></td>
+        </tr>
+        <tr class="tI">
+          <td><p>Return data (titel, release, genre, director, starring, image URL) about a single<br>
+            movie by title to the user</td>
+          <td>/movies/[Titel]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td><P>A JSON object holding data about a single movie name,<br>
+            containing a titel, release, genre, director, starring, image URL. Example:<br>
+              {<br>
+              |  |titel: 'Avatar',<br>
+              |  |release: 2009,<br>
+              |  |genre: 'Fantasy',<br>
+              |  |director: {<br>
+              |  |   |name: 'James Cameron',<br>
+              |  |   |bio: 'James Francis Cameron CC is ...',<br>
+              |  |   |birth: 1954,<br>
+              |  |   |death: ''<br>
+              |  |},<br>
+              |  |starring: ['Sam Worthington', 'Zoe Saldana', ...],<br>
+              |  |poster: '.../File:Avatar_(2009_film)_poster.jpg'<br>
+              },<br>
+          </p></td>
+        </tr>
+        <tr class="tI">
+          <td>Gets the data about a genre.</td>
+          <td>/movies/genre/[Genre Name]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            <P>A JSON object holding data about movie(s) in same genre,<br>
+            containing a name, and discription. Example:<br>
+            {<br>
+            ||name: 'Historical drama',<br>
+            ||discription: 'A famouse genre'<br>
+            },<br>
+            </p>
+          </td>
+        </tr>
+        <tr class="tI">
+          <td>Return movie(s) list by a genre name</td>
+          <td>/movies/genre/[Genre]/mL</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>
+            <P>A JSON object holding data about movie(s) in same genre,<br>
+            containing a titel, release, genre, director, starring, image URL. Example:<br>
+            {<br>
+            |  |titel: 'Avatar',<br>
+            |  |release: 2009,<br>
+            |  |genre: 'Fantasy',<br>
+            |  |director: {<br>
+            |  |   |name: 'James Cameron',<br>
+            |  |   |bio: 'James Francis Cameron CC is ...',<br>
+            |  |   |birth: 1954,<br>
+            |  |   |death: ''<br>
+            |  |},<br>
+            |  |starring: ['Sam Worthington', 'Zoe Saldana' ...],<br>
+            |  |poster: '.../File:Avatar_(2009_film)_poster.jpg'<br>
+            },<br>
+            </p>
+          </td>
+        </tr>
+        <tr class="tI">
+          <td>Return data about a director (bio, birth year, death year) by name</td>
+          <td>/movies/directors/[Name]</td>
+          <td>GET</td>
+          <td>None</td>
+          <td><P>A JSON object holding data about director name,<br>
+            containing a name, bio, birth, death. Example:<br>
+              {<br>
+              ||||name: 'James Cameron',<br>
+              ||||bio: 'James Francis Cameron is ...',<br>
+              ||||birth: 1954,<br>
+              ||||death: ''<br>
+              },<br>
+          </p></td>
+        </tr>
+        <tr class="tI">
+          <td>New users register</td>
+          <td>/users/register</td>
+          <td>POST</td>
+          <td>
+            <P>A JSON object holding data about user registration,<br>
+              containing a username, e-mail, pasword. Example:<br>
+              {<br>
+              |||username: 'Sebastion',<br>
+              |||email: 'sebastion@****.bhja',<br>
+              |||favoritMovies: ['Avatar'],<br>
+              },<br>
+            </p>
+          </td>
+          <td>
+            <P>A JSON object holding data about user registration,<br>
+              containing a username, e-mail, pasword, abd id. Example:<br>
+              {<br>
+              |||username: 'Sebastion',<br>
+              |||email: 'sebastion@****.bhja',<br>
+              |||favoritMovies: ['Avatar'],<br>
+              |||id: '**********',<br>
+              },<br>
+            </p>
+          </td>
+        </tr>
+        <tr class="tI">
+          <td>Users to update their user info (username).</td>
+          <td>/useres/[userId]</td>
+          <td>PUT</td>
+          <td>
+            <P>A JSON object holding data,<br>
+              containing a user new name. Example:<br>
+              {<br>
+              |||name: 'Sebastion',<br>
+              },<br>
+            </p>
+          </td>
+          <td>
+            <P>A JSON object holding data about new user name,<br>
+              updated. Example:<br>
+              {<br>
+              |||username: 'Sebastion',<br>
+              |||email: 'sebastion@****.bhja',<br>
+              |||favoritMovies: ['Avatar'],<br>
+              |||id: '**********',<br>
+              },<br>
+            </p>
+          </td>
+        </tr>
+        <tr class="tI">
+          <td>Users add a movie titel to its favorites list.</td>
+          <td>/users/[userId]/[movieTitel]</td>
+          <td>POST</td>
+          <td>None</td>
+          <td><P>A text message indicating whether the movie titel added
+            successfully to user favorit list.
+          </p></td>
+        </tr>
+        <tr class="tI">
+          <td>Users to remove a movie from their list of favorites</td>
+          <td>/users/[userId]/[movieTitel]</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>A text message indicating whether the movie was<br>
+            successfully removed.
+          </td>
+        </tr>
+        <tr class="tI">
+          <td>Existing users to deregister.</td>
+          <td>/users/[User id]</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>A text message indicating whether the user was<br>
+            successfully removed.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </body>
 </html>
