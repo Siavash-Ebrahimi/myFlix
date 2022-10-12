@@ -44,27 +44,27 @@
           <td><P>A JSON object holding data<br>about all the movies</P></td>
         </tr>
         <tr class="tI">
-          <td><p>Return data (titel, release, genre, director, starring, image URL) about a single<br>
+          <td><p>Return data (Title, Genre, Director, Image URL, Featured) about a single<br>
             movie by title to the user</td>
-          <td>/movies/[Titel]</td>
+          <td>/movies/[Title]</td>
           <td>GET</td>
           <td>None</td>
-          <td><P>A JSON object holding data about a single movie name,<br>
-            containing a titel, release, genre, director, starring, image URL. Example:<br>
+          <td>
+            <P>A JSON object holding data about a single movie name,<br>
+            containing a Title, Genre, Director, Image URL, Featured. Example:<br>
               {<br>
-              |  |titel: 'Avatar',<br>
-              |  |release: 2009,<br>
-              |  |genre: 'Fantasy',<br>
-              |  |director: {<br>
-              |  |   |name: 'James Cameron',<br>
-              |  |   |bio: 'James Francis Cameron CC is ...',<br>
-              |  |   |birth: 1954,<br>
-              |  |   |death: ''<br>
-              |  |},<br>
-              |  |starring: ['Sam Worthington', 'Zoe Saldana', ...],<br>
-              |  |poster: '.../File:Avatar_(2009_film)_poster.jpg'<br>
-              },<br>
-          </p></td>
+              ....Titel: 'Avatar',<br>
+              ....Genre: 'Fantasy',<br>
+              ....Director: {<br>
+              ........Name: 'James Cameron',<br>
+              ........Bio: 'James Francis Cameron CC is ...',<br>
+              ........Birth: 1954,<br>
+              ....},<br>
+              ....ImagePath: '.../File:Avatar_(2009_film)_poster.jpg'<br>
+              ....Featured: true</td>
+              }
+           </p>
+        </td>
         </tr>
         <tr class="tI">
           <td>Gets the data about a genre.</td>
@@ -73,50 +73,25 @@
           <td>None</td>
           <td>
             <P>A JSON object holding data about movie(s) in same genre,<br>
-            containing a name, and discription. Example:<br>
+            containing a Name, and Description. Example:<br>
             {<br>
-            ||name: 'Historical drama',<br>
-            ||discription: 'A famouse genre'<br>
+            ....Name: 'Historical drama',<br>
+            ....Description: 'A historical drama is'<br>
             },<br>
             </p>
           </td>
         </tr>
         <tr class="tI">
-          <td>Return movie(s) list by a genre name</td>
-          <td>/movies/genre/[Genre]/mL</td>
-          <td>GET</td>
-          <td>None</td>
-          <td>
-            <P>A JSON object holding data about movie(s) in same genre,<br>
-            containing a titel, release, genre, director, starring, image URL. Example:<br>
-            {<br>
-            |  |titel: 'Avatar',<br>
-            |  |release: 2009,<br>
-            |  |genre: 'Fantasy',<br>
-            |  |director: {<br>
-            |  |   |name: 'James Cameron',<br>
-            |  |   |bio: 'James Francis Cameron CC is ...',<br>
-            |  |   |birth: 1954,<br>
-            |  |   |death: ''<br>
-            |  |},<br>
-            |  |starring: ['Sam Worthington', 'Zoe Saldana' ...],<br>
-            |  |poster: '.../File:Avatar_(2009_film)_poster.jpg'<br>
-            },<br>
-            </p>
-          </td>
-        </tr>
-        <tr class="tI">
-          <td>Return data about a director (bio, birth year, death year) by name</td>
+          <td>Return data about a director (Name, Bio, Birth year) by name</td>
           <td>/movies/directors/[Name]</td>
           <td>GET</td>
           <td>None</td>
           <td><P>A JSON object holding data about director name,<br>
-            containing a name, bio, birth, death. Example:<br>
+            containing a Name, Bio, and Birth year. Example:<br>
               {<br>
-              ||||name: 'James Cameron',<br>
-              ||||bio: 'James Francis Cameron is ...',<br>
-              ||||birth: 1954,<br>
-              ||||death: ''<br>
+              ....Name: 'James Cameron',<br>
+              ....Bio: 'James Francis Cameron is ...',<br>
+              ....Birth: 1954,<br>
               },<br>
           </p></td>
         </tr>
@@ -126,62 +101,69 @@
           <td>POST</td>
           <td>
             <P>A JSON object holding data about user registration,<br>
-              containing a username, e-mail, pasword. Example:<br>
+              containing a Username, E-mail, Pasword, and FavoritMovies. Example:<br>
               {<br>
-              |||username: 'Sebastion',<br>
-              |||email: 'sebastion@****.bhja',<br>
-              |||favoritMovies: ['Avatar'],<br>
-              },<br>
+                ...."Username": "Sebastion",<br>
+                ...."Password": "1234",<br>
+                ...."Email": "sebastion@****.bhja",<br>
+                ...."Birthday": "2004-04-22"<br>
+              }<br>
             </p>
           </td>
           <td>
             <P>A JSON object holding data about user registration,<br>
-              containing a username, e-mail, pasword, abd id. Example:<br>
+              containing a Username, E-mail, Pasword, and FavoritMovies. Example:<br>
               {<br>
-              |||username: 'Sebastion',<br>
-              |||email: 'sebastion@****.bhja',<br>
-              |||favoritMovies: ['Avatar'],<br>
-              |||id: '**********',<br>
-              },<br>
+                ...."Username": "Sebastion",<br>
+                ...."Password": "1234",<br>
+                ...."Email": "sebastion@****.bhja",<br>
+                ...."Birthday": "2004-04-22T00:00:00.000Z",<br>
+                ...."FavoriteMovies": [],<br>
+                ...."_id": "634692aeb3b332a7dad7a96d",<br>
+                ...."__v": 0<br>
+              }<br>
             </p>
           </td>
         </tr>
         <tr class="tI">
-          <td>Users to update their user info (username).</td>
+          <td>Users to update registration.</td>
           <td>/useres/[userId]</td>
           <td>PUT</td>
           <td>
             <P>A JSON object holding data,<br>
-              containing a user new name. Example:<br>
+              containing a user new Username, Password, Email. Example:<br>
               {<br>
-              |||name: 'Sebastion',<br>
-              },<br>
+                ...."Username": "Sebastion",<br>
+                ...."Email": "sebastion@****.bhja",<br>
+                ...."Password": "1234",<br>
+                ...."Birthday": "2004-04-22"<br>
+              }<br>
             </p>
           </td>
           <td>
-            <P>A JSON object holding data about new user name,<br>
+            <P>A JSON object holding data & shows updated User information,<br>
               updated. Example:<br>
               {<br>
-              |||username: 'Sebastion',<br>
-              |||email: 'sebastion@****.bhja',<br>
-              |||favoritMovies: ['Avatar'],<br>
-              |||id: '**********',<br>
-              },<br>
+                ....Username: 'Sebastion Framo',<br>
+                ....Email: 'sebastion@****.bhja',<br>
+                ....Password: 'Test4321',<br>
+                ....Birthday: 2004-04-22<br>
+              }<br>
             </p>
           </td>
         </tr>
         <tr class="tI">
           <td>Users add a movie titel to its favorites list.</td>
-          <td>/users/[userId]/[movieTitel]</td>
+          <td>/users/[userId]/[movieTitle]</td>
           <td>POST</td>
           <td>None</td>
-          <td><P>A text message indicating whether the movie titel added
-            successfully to user favorit list.
+          <td><P>A text message indicating whether the movie Title added
+            successfully to user favorite list.
           </p></td>
         </tr>
         <tr class="tI">
           <td>Users to remove a movie from their list of favorites</td>
-          <td>/users/[userId]/[movieTitel]</td>
+          <td>/users/[userId]/[movieTitle]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>A text message indicating whether the movie was<br>
