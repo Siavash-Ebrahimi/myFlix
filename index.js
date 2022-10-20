@@ -113,7 +113,7 @@ app.get('/', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users',
+app.post('/users/register',
   [
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
