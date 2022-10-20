@@ -7,11 +7,13 @@ const uuid = require('uuid');
 const fs = require('fs');
 const path = require('path');
 
-// // import from movie database file (topMovieIndex.js)
-// const topTenMovies = require('./topMovieIndex.js');
-// const users = require('./users.js');
+/* Import Express-Validation, to validate and check all entries through the
+   Client Side requests at Server side. */
+const { check, validationResult } = require('express-validator');
 
+/* Import Mongoose module, to get access to your MongoDB database. */
 const mongoose = require('mongoose');
+
 // import from Models.js file that connected to Mongoose database.
 const Models = require('./models.js');
 
@@ -19,23 +21,54 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 
-// Below command connect our server (index.js) to MongoDB database for
-// making requer and respose.
+/* Below command connect our server (index.js) to MongoDB database for
+   making requer and respose. */
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// // The app variable will take and wrap all "express module" functionalities inside,
-// // by using "express()" and let us approach that.
+/* The app variable will take and wrap all "express module" functionalities inside,
+   by using "express()" and let us approach that. */
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//==============================================================================
+//========= API CROS policy && Authentication & Security Part ==================
+//==============================================================================
+
+// CROS Policy:
+/* Import CROS (Cross-Origin Resource Sharing) module policy and aske Express to use it
+   to defined what kind of domains are able to send request to our API (myFlix API)  */
+const cors = require('cors');
+
+/* We ask Application to check the Domains name variable list "allowedOrigins" to
+   check CROS policy and if they are able to send request to our API or not */
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+// Authentication and Authorization :
+/* Import auth.js file that hold Basic HTTP Authentication and JWT Authentication
+   for login request and provide JWT Token for each API request. */
 let auth = require('./auth.js')(app);
 
+/* Import passport.js file that defines what kind of Authentication and Authorization
+   we want to use in our application. (Basic HTTP & JWT) */
 const passport = require('passport');
 require('./passport');
-// ================================================================
-// ===================== Middleware Functions: ====================
+
+// =============================================================================
+// ========================== Middleware Functions: ============================
+// =============================================================================
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
@@ -58,16 +91,17 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-// ================================================================
-// ================================================================
+// =============================================================================
+// =============================================================================
 
 // Welcome Message.
 app.get('/', (req, res) => {
   res.send('<h1>Welcom to myFlix Application</h1><p>Are you eager to raise your knowledge in the movie industry? <br> We are serving whatever you want to know about Movies you like. Lets enjoy it ...</p>');
 });
 
-// ================ Main CRUD Request Response ==============================
-// ==========================================================================
+// =============================================================================
+// =================== Main CRUD Request Response ==============================
+// =============================================================================
 
 // CREATE
 // Add new app users.
@@ -79,7 +113,19 @@ app.get('/', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users/register', (req, res) => {
+app.post('/users/register', [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  // check the validation object for errors
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  // Convert user password to a Hash Password:
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -87,7 +133,7 @@ app.post('/users/register', (req, res) => {
       } else {
         Users.create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
@@ -106,6 +152,8 @@ app.post('/users/register', (req, res) => {
 
 // CREATE
 // Add a movie to a user's list of favorites
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
@@ -125,6 +173,8 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 
 //READ
 // GET all movies jsno.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
   .then((movie) => {
@@ -139,6 +189,8 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 
 //READ
 //Gets the data about a single movie, by Title.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/:Title?', passport.authenticate('jwt', { session: false }), (req, res) => {
   const {Title} = req.params;
   Movies.findOne({Title: Title})
@@ -157,12 +209,14 @@ app.get('/movies/:Title?', passport.authenticate('jwt', { session: false }), (re
 
 //READ
 //Gets the data about a Genre.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/genre/:GenreName?', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { GenreName } = req.params;
   Movies.findOne({ 'Genre.Name': GenreName})
     .then((movie) => {
       if (movie) {
-        return res.status(201).json(movie.Genre);
+        return res.status(200).json(movie.Genre);
       }else {
         return res.status(404).send('There is no Movie: ' + GenreName + ' in our database!')
       }
@@ -176,6 +230,8 @@ app.get('/movies/genre/:GenreName?', passport.authenticate('jwt', { session: fal
 
 //READ
 //Gets data about a director.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/directors/:DirectorName', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { DirectorName } = req.params;
   Movies.findOne({ 'Director.Name': DirectorName})
@@ -194,6 +250,8 @@ app.get('/movies/directors/:DirectorName', passport.authenticate('jwt', { sessio
 
 //READ
 //Gets all users data.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
     .then((users) => {
@@ -207,6 +265,8 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 
 //READ
 // Get a user by username
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   const {Username} = req.params;
   Users.findOne({ Username: Username })
@@ -226,8 +286,20 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 // ==========================================================================================
 
 // UPDATE
-// Update the "user name" of by a user id.
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+// Update the Users information by input UserName.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }, [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  // check the validation object for errors
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
   // const {UserName} = req.params;
   Users.findOneAndUpdate({ Username: req.params.Username },
     {
@@ -254,6 +326,8 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 
 //DELETE
 // Delete a user by username
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
@@ -271,6 +345,8 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
 
 //DELETE
 // Delete a movie from user Favorit Movies list by username & Movie id.
+/* This Line of code "passport.authenticate('jwt', { session: false })" make sure
+    that the user has already Authenticated and Authorized to use this request  */
 app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
@@ -287,6 +363,10 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { se
 });
 
 // listen for requests
-app.listen(8080, () =>{
-  console.log('The app server is listening on port 8080.');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
 });
+// app.listen(8080, () =>{
+//   console.log('The app server is listening on port 8080.');
+// });
