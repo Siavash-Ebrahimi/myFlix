@@ -23,7 +23,8 @@ const Users = Models.User;
 
 /* Below command connect our server (index.js) to MongoDB database for
    making requer and respose. */
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+    // mongoimport --uri mongodb+srv://myFlixDBadmin:PSrqtwUhjEvv8nyQ@myflixdb.kqtwugi.mongodb.net/myFlixDB --collection movies --type json --file ../exported_collections/movies.json
+mongoose.connect('mongodb+srv://myFlixDBadmin:PSrqtwUhjEvv8nyQ@myflixdb.kqtwugi.mongodb.net/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 /* The app variable will take and wrap all "express module" functionalities inside,
    by using "express()" and let us approach that. */
