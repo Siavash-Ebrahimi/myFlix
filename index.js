@@ -30,7 +30,8 @@ const Users = Models.User;
 
 /* Below command connect our API (index.js) to MongoDB Atlas the cloud database for
        making requer and respose by using enviorment variabels on Paas cloud Herku. */
-mongoose.connect('process.env.CONNECTION_URI', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // =============================================================================
