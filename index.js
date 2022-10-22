@@ -10,6 +10,16 @@ const path = require('path');
 /* Import Express-Validation, to validate and check all entries through the
    Client Side requests at Server side. */
 const { check, validationResult } = require('express-validator');
+// Creat an Arry of all validation reqyest we need for a user:
+const userValidation = [
+  check('Username', 'Username must be at least 5 characters.').isLength({ min: 5 }),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password must be at least 5 characters.').isLength({ min: 8 }),
+  check('Email', 'Email is not valid').isEmail(),
+  check('Birthday', 'Birthday is not valid').isDate()
+];
+
+// -----------------------------------------------------------------------------
 
 /* Import Mongoose module, to get access to your MongoDB database. */
 const mongoose = require('mongoose');
@@ -30,7 +40,6 @@ const Users = Models.User;
 
 /* Below command connect our API (index.js) to MongoDB Atlas the cloud database for
        making requer and respose by using enviorment variabels on Paas cloud Herku. */
-
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
@@ -52,21 +61,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /* Import CROS (Cross-Origin Resource Sharing) module policy and aske Express to use it
    to defined what kind of domains are able to send request to our API (myFlix API)  */
 const cors = require('cors');
+// With this line of codes all domains are allowed to make requests to API.
+app.use(cors());
 
 /* We ask Application to check the Domains name variable list "allowedOrigins" to
    check CROS policy and if they are able to send request to our API or not */
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-}));
+// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+//
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if(!origin) return callback(null, true);
+//     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
+//       let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+//       return callback(new Error(message ), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
 
 // Authentication and Authorization :
 /* Import auth.js file that hold Basic HTTP Authentication and JWT Authentication
@@ -125,13 +136,9 @@ app.get('/', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users/register',
-  [
-    check('Username', 'Username is required').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
-  ], (req, res) => {
+/* The "userValidation" variable is an array that is defined at the beginning,
+   and contains all checkpoints (check) for validating an entry. */
+app.post('/users/register', userValidation, (req, res) => {
 
   // check the validation object for errors
     let errors = validationResult(req);
@@ -302,27 +309,27 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 });
 // ==========================================================================================
 
+// User input Validation Array:
+
 // UPDATE
 // Update the Users information by input UserName.
 /* This Line of code "passport.authenticate('jwt', { session: false })" make sure
     that the user has already Authenticated and Authorized to use this request  */
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }, [
-  check('Username', 'Username is required').isLength({min: 5}),
-  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email does not appear to be valid').isEmail()
-]), (req, res) => {
+/* Also the "userValidation" variable is an array that is defined at the beginning,
+   and contains all checkpoints (check) for validating an entry. */
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), userValidation, (req, res) => {
   // check the validation object for errors
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
   // const {UserName} = req.params;
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ Username: req.params.Username },
     {
     $set: {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     },
