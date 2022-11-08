@@ -40,7 +40,7 @@ const Users = Models.User;
 
 /* Below command connect our API (index.js) to MongoDB Atlas the cloud database for
        making requer and respose by using enviorment variabels on Paas cloud Herku. */
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // =============================================================================
@@ -95,11 +95,11 @@ require('./passport');
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' });
 
 // collect any request detailes from user and save them into log.txt
 // that connected to accessLogStream variable for fs.createWriteStream !!!
-app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // use morgan to make log of requests in terminal.
 app.use(morgan('common'));
@@ -141,38 +141,38 @@ app.get('/', (req, res) => {
 app.post('/users/register', userValidation, (req, res) => {
 
   // check the validation object for errors
-    let errors = validationResult(req);
+  let errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
 
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-      .then((user) => {
-        if (user) {
-          //If the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Username + ' already exists');
-        } else {
-          Users
-            .create({
-              Username: req.body.Username,
-              Password: hashedPassword,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday
-            })
-            .then((user) => { res.status(201).json(user) })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).send('Error: ' + error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
- });
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    .then((user) => {
+      if (user) {
+        //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.Username + ' already exists');
+      } else {
+        Users
+          .create({
+            Username: req.body.Username,
+            Password: hashedPassword,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday
+          })
+          .then((user) => { res.status(201).json(user) })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
 
 // CREATE
 // Add a movie to a user's list of favorites
@@ -180,17 +180,17 @@ app.post('/users/register', userValidation, (req, res) => {
     that the user has already Authenticated and Authorized to use this request  */
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { FavoriteMovies: req.params.MovieID }
-   },
-   { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
+    $push: { FavoriteMovies: req.params.MovieID }
+  },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
 });
 
 // ==========================================================================================
@@ -198,16 +198,17 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 //READ
 // GET all movies jsno.
 /* This Line of code "passport.authenticate('jwt', { session: false })" make sure
-    that the user has already Authenticated and Authorized to use this request  */
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+    that the user has already Authenticated and Authorized to use this request 
+    passport.authenticate('jwt', { session: false }), */
+app.get('/movies', (req, res) => {
   Movies.find()
-  .then((movie) => {
-    return res.status(200).json(movie);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
+    .then((movie) => {
+      return res.status(200).json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 
@@ -216,12 +217,12 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 /* This Line of code "passport.authenticate('jwt', { session: false })" make sure
     that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/:Title?', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const {Title} = req.params;
-  Movies.findOne({Title: Title})
+  const { Title } = req.params;
+  Movies.findOne({ Title: Title })
     .then((movie) => {
       if (movie) {
         return res.status(201).json(movie);
-      }else {
+      } else {
         return res.status(404).send('There is no Movie: ' + Title + ' in our database!')
       }
     })
@@ -237,11 +238,11 @@ app.get('/movies/:Title?', passport.authenticate('jwt', { session: false }), (re
     that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/genre/:GenreName?', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { GenreName } = req.params;
-  Movies.findOne({ 'Genre.Name': GenreName})
+  Movies.findOne({ 'Genre.Name': GenreName })
     .then((movie) => {
       if (movie) {
         return res.status(200).json(movie.Genre);
-      }else {
+      } else {
         return res.status(404).send('There is no Movie: ' + GenreName + ' in our database!')
       }
     })
@@ -258,11 +259,11 @@ app.get('/movies/genre/:GenreName?', passport.authenticate('jwt', { session: fal
     that the user has already Authenticated and Authorized to use this request  */
 app.get('/movies/directors/:DirectorName', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { DirectorName } = req.params;
-  Movies.findOne({ 'Director.Name': DirectorName})
+  Movies.findOne({ 'Director.Name': DirectorName })
     .then((movie) => {
       if (movie) {
         return res.status(201).json(movie.Director);
-      }else {
+      } else {
         return res.status(404).send('There is no Movie: ' + DirectorName + ' in our database!')
       }
     })
@@ -292,12 +293,12 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 /* This Line of code "passport.authenticate('jwt', { session: false })" make sure
     that the user has already Authenticated and Authorized to use this request  */
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
-  const {Username} = req.params;
+  const { Username } = req.params;
   Users.findOne({ Username: Username })
     .then((user) => {
       if (user) {
         return res.status(201).json(user);
-      }else {
+      } else {
         return res.status(404).send('There is no Username: ' + Username + ' in our database!')
       }
 
@@ -327,23 +328,23 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), us
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ Username: req.params.Username },
     {
-    $set: {
-      Username: req.body.Username,
-      Password: hashedPassword,
-      Email: req.body.Email,
-      Birthday: req.body.Birthday
+      $set: {
+        Username: req.body.Username,
+        Password: hashedPassword,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      },
     },
-  },
-  // This line makes sure that the updated document is returned
-  { new: true },
-  (err, updatedUser) => {
-    if(err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
+    // This line makes sure that the updated document is returned
+    { new: true },
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
 });
 
 // ==========================================================================================
@@ -373,23 +374,23 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
     that the user has already Authenticated and Authorized to use this request  */
 app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $pull: { FavoriteMovies: req.params.MovieID }
-   },
-   { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
+    $pull: { FavoriteMovies: req.params.MovieID }
+  },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
 });
 
 // listen for requests
 const port = process.env.PORT || 8080;
-app.listen(port, '0.0.0.0',() => {
- console.log('Listening on Port ' + port);
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port ' + port);
 });
 // app.listen(8080, () =>{
 //   console.log('The app server is listening on port 8080.');
