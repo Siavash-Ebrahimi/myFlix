@@ -200,7 +200,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 /* This Line of code "passport.authenticate('jwt', { session: false })" make sure
     that the user has already Authenticated and Authorized to use this request 
     passport.authenticate('jwt', { session: false }), */
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movie) => {
       return res.status(200).json(movie);
