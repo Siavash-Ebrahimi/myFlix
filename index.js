@@ -62,22 +62,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
    to defined what kind of domains are able to send request to our API (myFlix API)  */
 const cors = require('cors');
 // With this line of codes all domains are allowed to make requests to API.
-app.use(cors());
+// app.use(cors());
 
 /* We ask Application to check the Domains name variable list "allowedOrigins" to
    check CROS policy and if they are able to send request to our API or not */
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
-//
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-//       let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-//       return callback(new Error(message ), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // Authentication and Authorization :
 /* Import auth.js file that hold Basic HTTP Authentication and JWT Authentication
