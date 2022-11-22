@@ -12,7 +12,7 @@ const path = require('path');
 const { check, validationResult } = require('express-validator');
 // Creat an Arry of all validation reqyest we need for a user:
 const userValidation = [
-  check('Username', 'Username must be at least 5 characters.').isLength({ min: 5 }),
+  check('Username', 'Username must be at least 5 characters.').isLength({ min: 2 }),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password must be at least 5 characters.').isLength({ min: 8 }),
   check('Email', 'Email is not valid').isEmail(),
