@@ -4,9 +4,12 @@ const jwtSecret = 'your_jwt_secret';
 const jwt = require('jsonwebtoken'),
   passport = require('passport');
 
+const cors = require('cors');
+
 // Your local passport file
 require('./passport');
 
+// const cors = require('cors');
 
 let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
@@ -21,7 +24,12 @@ let generateJWTToken = (user) => {
 
 /* POST login. */
 module.exports = (router) => {
-  router.post('/login', (req, res) => {
+  router.post('/login', cors(), (req, res) => {
+    // module.exports = (router) => {
+    //   router.post('/login', cors(), (req, res) => {
+    //     // Your login endpoint code here
+    //   });
+    // }
     passport.authenticate('local', { session: false }, (error, user, info) => {
       if (error || !user) {
         return res.status(400).json({
