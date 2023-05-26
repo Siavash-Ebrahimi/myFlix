@@ -66,18 +66,18 @@ app.use(cors());
 
 /* We ask Application to check the Domains name variable list "allowedOrigins" to
    check CROS policy and if they are able to send request to our API or not */
-// let allowedOrigins = [];
+let allowedOrigins = ['http://localhost:8080', 'http://44.202.128.156', 'http://myflix-react-frontend-bucket-exercise-1-7-careerfoundry.s3-website-us-east-1.amazonaws.com/'];
 
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
-//       let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-//       return callback(new Error(message), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // Authentication and Authorization :
 /* Import auth.js file that hold Basic HTTP Authentication and JWT Authentication
