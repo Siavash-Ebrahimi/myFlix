@@ -119,7 +119,7 @@ app.use((err, req, res, next) => {
 
 // Welcome Message.
 app.get('/', (req, res) => {
-  res.send('<h1>Welcom to myFlix Application</h1><p>Are you eager to raise your knowledge in the movie industry? <br> We are serving whatever you want to know about Movies you like. Lets enjoy it ...</p>');
+  res.send('<h1>Welcom to myFlix Application API</h1><p>Are you eager to raise your knowledge in the movie industry? <br> We are serving whatever you want to know about Movies you like. Lets enjoy it ...</p>');
 });
 
 // =============================================================================
